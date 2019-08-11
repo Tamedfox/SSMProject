@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>管理</title>
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+	<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+    
+    <script type="text/javascript" src="../plugins/angularjs/angular.min.js">  </script>
+    <!-- 分页组件开始 -->
+	<script src="../plugins/angularjs/pagination.js"></script>
+	<link rel="stylesheet" href="../plugins/angularjs/pagination.css">
+	<!-- 分页组件结束 -->
+    
+    
+    <script type="text/javascript" src="../js/base.js">  </script>
+    <script type="text/javascript" src="../js/service/bbsReplyService.js">  </script>
+    <script type="text/javascript" src="../js/controller/baseController.js">  </script>
+    <script type="text/javascript" src="../js/controller/bbsReplyController.js">  </script>
+    
+</head>
+
+<body class="hold-transition skin-red sidebar-mini" ng-app="OAManage" ng-controller="bbsReplyController" ng-init="findTopicAndReplys()">
+  <!-- .box-body -->
+                    <div class="box-header with-border">
+                        <h3 class="box-title">帖子内容</h3>
+                    </div>
+
+                    <div class="box-body">
+
+                        <!-- 数据表格 -->
+                        <div class="table-box">
+                            <!--工具栏-->
+                            <div class="pull-left">
+                                <div class="form-group form-inline">
+                                    <div class="btn-group">
+                                        <button ng-click="goBbs()"><i class="fa fa-file-o"></i> 论坛主页</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box-tools pull-right">
+                                <div class="has-feedback">							       
+                                </div>
+                            </div>
+                            <!--工具栏/-->
+			                  <!--数据列表-->
+			                  <table id="dataList" class="table table-bordered table-striped table-hover dataTable" style="margin-left:50px;">
+			                      <tbody>
+							            <tr><td>
+				          					<div>	
+												 <table  width="1200px" >			
+													<!-- 楼主 -->
+											            <input  type="hidden" ng-model="topicAndReplys.bbs.uuid">
+														<tr><td>
+															<div style="margin:0 auto;margin-top: 5px;margin-bottom: 5px;border-top:1px solid #000;border-bottom:1px solid #000;">
+																<table style="table-layout: fixed;width: 1040px;border-collapse:separate; border-spacing:0px 10px;">
+																	<tr>
+																		<td style="padding-left:25px;text-align:left;"><p class="lead">{{topicAndReplys.bbs.title}}</p></td>
+																		<td> </td>
+																	</tr>
+																</table>
+															</div>
+														</td></tr>
+														<tr><td>
+															<div style="margin:0 auto;margin-top: 5px;margin-bottom: 5px;border-top:1px solid #000;border-bottom:1px solid #000;">
+																<table style="table-layout: fixed;width: 1040px;border-collapse:separate; border-spacing:0px 10px;">
+																	<tr>
+																		<td style="text-align: center;width:156px;"><small></small></td>
+																		<td rowspan="2" valign="top" style="padding-left:10px;text-align:left;width:1000px;"><p class="lead">{{topicAndReplys.bbs.content}}</p></td>
+																	</tr>
+																	<tr>
+																		<td valign="top" style="text-align: center;width:156px;margin-top: 10px"><small>{{topicAndReplys.bbs.username}}</small></td>
+																		<td></td>
+																	</tr>
+																	<tr style="height: 50px">
+																		<td></td>
+																		<td valign="bottom"  style="text-align: right;"><small>楼主  &nbsp;&nbsp;&nbsp;{{topicAndReplys.bbs.publishTime}}</small></td>
+																	</tr>
+																</table>
+															</div>
+													</td></tr>
+													<tr  ng-repeat="reply in topicAndReplys.replyList">
+														<td>
+															<div style="margin:0 auto;margin-top: 5px;margin-bottom: 5px;border-top:1px solid #000;border-bottom:1px solid #000;">
+																<table style="table-layout: fixed;width: 1040px;border-collapse:separate; border-spacing:0px 10px;">
+																	<tr>
+																		<td style="text-align: center;width:156px;"> </td>
+																			<td rowspan="2" valign="top" style="padding-left:10px;text-align:left;width:728px;"><p class="lead">{{reply.content}}</p></td>
+																		</tr>
+																		<tr>
+																			<td valign="top" style="text-align: center;width:156px;margin-top: 10px"><small>{{reply.username}}</small></td>
+																			<td></td>
+																		</tr>
+																		<tr style="height: 50px">
+																			<td></td>
+																		<td valign="bottom" style="text-align: right;"><small>{{$index+1}}楼  &nbsp;&nbsp;&nbsp; {{reply.publishTime }}</small></td>
+																	</tr>
+																</table>
+															</div>
+														</td>
+													</tr>	
+												 </table>				
+											</div>
+										</td></tr>
+			                      </tbody>
+			                  </table>
+			                  <!--数据列表/-->                        
+                        </div>
+                        <!-- 数据表格 /-->
+                        <button class="btn btn-success" title="添加留言" data-toggle="modal" data-target="#editModal"  ng-click="entity={}">添加留言</button>
+                     </div>
+                    <!-- /.box-body -->
+         
+<!-- 编辑窗口 -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" >
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h3 id="myModalLabel">编辑</h3>
+		</div>
+		<div class="modal-body">	
+			 <table class="table table-bordered table-striped"  width="800px">			
+		      	  		      	<tr>
+                             
+									<td>内容</td>
+
+							 <td><textarea rows="3" cols="12"  ng-model="entity.content" placeholder="内容"  style="width: 90%;height:150px"></textarea></td>
+                        </tr>		
+			 </table>				
+		</div>
+		<div class="modal-footer">						
+			<button class="btn btn-success" data-dismiss="modal" aria-hidden="true" ng-click="save(topicAndReplys.bbs.uuid)">发布</button>
+			<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
+		</div>
+	  </div>
+	</div>
+</div>
+
+</body>
+</html>
