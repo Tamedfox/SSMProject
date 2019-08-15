@@ -137,5 +137,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 			}
 		}
 	
+		/**
+		 * 根据用户名查找用户
+		 * @param userName
+		 * @return
+		 */
+		@Override
+		public TbEmployee findByName(String userName) {
+			TbEmployeeExample example = new TbEmployeeExample();
+			example.createCriteria().andUsernameEqualTo(userName);
+			List<TbEmployee> employees = employeeMapper.selectByExample(example );
+			if(employees.isEmpty()) {
+				return null;
+			}
+			return employees.get(0);
+		}
 		
 }

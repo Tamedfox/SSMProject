@@ -9,9 +9,10 @@
     <result column="telephone" property="telephone" jdbcType="VARCHAR" />
     <result column="head_pic" property="headPic" jdbcType="VARCHAR" />
     <result column="department" property="department" jdbcType="BIGINT" />
-    <result column="hire_date" property="hireDate" jdbcType="TIMESTAMP" />
+    <result column="hire_date" property="hireDate" jdbcType="DATE" />
     <result column="e_mail" property="eMail" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="role" property="role" jdbcType="BIGINT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -73,7 +74,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, name, username, password, telephone, head_pic, department, hire_date, e_mail, 
-    status
+    status, role
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cf.pojo.TbEmployeeExample" >
     select
@@ -109,11 +110,11 @@
     insert into tb_employee (id, name, username, 
       password, telephone, head_pic, 
       department, hire_date, e_mail, 
-      status)
+      status, role)
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
       #{password,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{headPic,jdbcType=VARCHAR}, 
-      #{department,jdbcType=BIGINT}, #{hireDate,jdbcType=TIMESTAMP}, #{eMail,jdbcType=VARCHAR}, 
-      #{status,jdbcType=VARCHAR})
+      #{department,jdbcType=BIGINT}, #{hireDate,jdbcType=DATE}, #{eMail,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{role,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.cf.pojo.TbEmployee" >
     insert into tb_employee
@@ -148,6 +149,9 @@
       <if test="status != null" >
         status,
       </if>
+      <if test="role != null" >
+        role,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -172,13 +176,16 @@
         #{department,jdbcType=BIGINT},
       </if>
       <if test="hireDate != null" >
-        #{hireDate,jdbcType=TIMESTAMP},
+        #{hireDate,jdbcType=DATE},
       </if>
       <if test="eMail != null" >
         #{eMail,jdbcType=VARCHAR},
       </if>
       <if test="status != null" >
         #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null" >
+        #{role,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
@@ -213,13 +220,16 @@
         department = #{record.department,jdbcType=BIGINT},
       </if>
       <if test="record.hireDate != null" >
-        hire_date = #{record.hireDate,jdbcType=TIMESTAMP},
+        hire_date = #{record.hireDate,jdbcType=DATE},
       </if>
       <if test="record.eMail != null" >
         e_mail = #{record.eMail,jdbcType=VARCHAR},
       </if>
       <if test="record.status != null" >
         status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.role != null" >
+        role = #{record.role,jdbcType=BIGINT},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -235,9 +245,10 @@
       telephone = #{record.telephone,jdbcType=VARCHAR},
       head_pic = #{record.headPic,jdbcType=VARCHAR},
       department = #{record.department,jdbcType=BIGINT},
-      hire_date = #{record.hireDate,jdbcType=TIMESTAMP},
+      hire_date = #{record.hireDate,jdbcType=DATE},
       e_mail = #{record.eMail,jdbcType=VARCHAR},
-      status = #{record.status,jdbcType=VARCHAR}
+      status = #{record.status,jdbcType=VARCHAR},
+      role = #{record.role,jdbcType=BIGINT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -264,13 +275,16 @@
         department = #{department,jdbcType=BIGINT},
       </if>
       <if test="hireDate != null" >
-        hire_date = #{hireDate,jdbcType=TIMESTAMP},
+        hire_date = #{hireDate,jdbcType=DATE},
       </if>
       <if test="eMail != null" >
         e_mail = #{eMail,jdbcType=VARCHAR},
       </if>
       <if test="status != null" >
         status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null" >
+        role = #{role,jdbcType=BIGINT},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -283,9 +297,10 @@
       telephone = #{telephone,jdbcType=VARCHAR},
       head_pic = #{headPic,jdbcType=VARCHAR},
       department = #{department,jdbcType=BIGINT},
-      hire_date = #{hireDate,jdbcType=TIMESTAMP},
+      hire_date = #{hireDate,jdbcType=DATE},
       e_mail = #{eMail,jdbcType=VARCHAR},
-      status = #{status,jdbcType=VARCHAR}
+      status = #{status,jdbcType=VARCHAR},
+      role = #{role,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

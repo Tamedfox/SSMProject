@@ -23,6 +23,8 @@ public class TbEmployee {
 
     private String status;
 
+    private Long role;
+
     public Long getId() {
         return id;
     }
@@ -101,5 +103,13 @@ public class TbEmployee {
 
     public void setStatus(String status) {
         this.status = status == null ? null : status.trim();
+    }
+
+    public Long getRole() {
+        return role;
+    }
+
+    public void setRole(Long role) {
+        this.role = role;
     }
 }

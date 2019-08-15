@@ -1,20 +1,20 @@
 package com.cf.service;
 import java.util.List;
 
-import com.cf.pojo.TbEmployee;
+import com.cf.pojo.TbRole;
 import com.cf.pojo.result.PageResult;
 /**
  * 服务层接口
  * @author Administrator
  *
  */
-public interface EmployeeService {
+public interface RoleService {
 
 	/**
 	 * 返回全部列表
 	 * @return
 	 */
-	public List<TbEmployee> findAll();
+	public List<TbRole> findAll();
 	
 	
 	/**
@@ -27,13 +27,13 @@ public interface EmployeeService {
 	/**
 	 * 增加
 	*/
-	public void add(TbEmployee employee);
+	public void add(TbRole role);
 	
 	
 	/**
 	 * 修改
 	 */
-	public void update(TbEmployee employee);
+	public void update(TbRole role);
 	
 
 	/**
@@ -41,7 +41,7 @@ public interface EmployeeService {
 	 * @param id
 	 * @return
 	 */
-	public TbEmployee findOne(Long id);
+	public TbRole findOne(Long id);
 	
 	
 	/**
@@ -56,19 +56,6 @@ public interface EmployeeService {
 	 * @param pageSize 每页记录数
 	 * @return
 	 */
-	public PageResult findPage(TbEmployee employee, int pageNum,int pageSize);
+	public PageResult findPage(TbRole role, int pageNum,int pageSize);
 	
-	/**
-	 * 根据传入的id修改员工状态
-	 * @param ids 传入id数组
-	 * @param status 目标状态
-	 */
-	public void updateStatus(Long[] ids, String status);
-	
-	/**
-	 * 根据用户名查找用户
-	 * @param userName
-	 * @return
-	 */
-	public TbEmployee findByName(String userName);
 }
