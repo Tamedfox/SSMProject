@@ -20,6 +20,12 @@
   
     <script src="../plugins/adminLTE/js/app.min.js"></script>
     
+    <script type="text/javascript" src="../plugins/angularjs/angular.min.js">  </script>
+        
+    <script type="text/javascript" src="../js/base.js">  </script>
+    <script type="text/javascript" src="../js/service/indexService.js">  </script>
+    <script type="text/javascript" src="../js/controller/indexController.js">  </script>
+    
     <script type="text/javascript">   
 		 function SetIFrameHeight(){
 		  	  var iframeid=document.getElementById("iframe"); //iframe id
@@ -29,14 +35,9 @@
 		 }
     
 	</script>    
-	
-	
-	<script type="text/javascript" src="../plugins/angularjs/angular.min.js"></script>
-
- 
 </head>
 
-<body class="hold-transition skin-green sidebar-mini">
+<body class="hold-transition skin-green sidebar-mini" ng-app="OAManage" ng-controller="indexController" ng-init="showName()">
 
     <div class="wrapper">
 

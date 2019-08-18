@@ -18,6 +18,8 @@
         <property name="securityManager" ref="securityManager" />
         <!-- 配置我们的登录请求地址 -->
         <property name="loginUrl" value="/admin/login.html" />
+        <!-- 配置登录成功所跳转的页面 -->
+        <property name="successUrl" value="/admin/index.html"></property>
         <!-- 如果您请求的资源不再您的权限范围，则跳转到/403请求地址 -->
         <property name="unauthorizedUrl" value="/unauthorized.html" />
         <!-- 退出 -->
@@ -30,19 +32,22 @@
         <property name="filterChainDefinitions">
             <value>
                 <!-- anon表示此地址不需要任何权限即可访问 -->
-                /** = anon
-<!--                 /admin/login.html=anon
-                /unauthorized.html=anon
-                /js/**=anon
-                /bootstrap/**=anon
+                <!-- 放过静态资源及css和基本js文件 -->
+                /admin/login.html=anon
                 /css/**=anon
-                /data/**=anon
+                /plugins/**=anon
                 /img/**=anon
-                /jquery/**=anon
-                /plugins/**=anon -->
                 /doLogout=logout
+                /js/base.js=anon
+                /js/service/loginService.js=anon
+                /js/controller/loginController.js=anon
+                /js/plugins/**=anon
+                /js/pages/**=anon
+                <!-- 不拦截登录方法 -->
+                /login.do=anon
+                /logout = logout
                 <!--所有的请求(除去配置的静态资源请求或请求地址为anon的请求)都要通过登录验证,如果未登录则跳到/login -->
-              <!-- /** = authc -->  
+                /** = authc
             </value>
         </property>
     </bean>

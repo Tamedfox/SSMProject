@@ -11,8 +11,11 @@
 
     <link rel="stylesheet" type="text/css" href="../css/webbase.css" />
     <link rel="stylesheet" type="text/css" href="../css/pages-login-manage.css" />
-    
-       <script type="text/javascript" src="../plugins/angularjs/angular.min.js">  </script>
+    <script type="text/javascript" src="../js/plugins/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/plugins/sui/sui.min.js"></script>
+	<script type="text/javascript" src="../js/plugins/jquery-placeholder/jquery.placeholder.min.js"></script>
+	<script src="../js/pages/jquery.slideunlock.js"></script>
+    <script type="text/javascript" src="../plugins/angularjs/angular.min.js">  </script>
     
     <script type="text/javascript" src="../js/base.js">  </script>
     <script type="text/javascript" src="../js/service/loginService.js">  </script>
@@ -76,21 +79,7 @@
 	</div>
 
 
-<script type="text/javascript" src="../js/plugins/jquery/jquery.min.js"></script>
-<script type="text/javascript" src="../js/plugins/sui/sui.min.js"></script>
-<script type="text/javascript" src="../js/plugins/jquery-placeholder/jquery.placeholder.min.js"></script>
-<script src="../js/pages/jquery.slideunlock.js"></script>
-<script>
-	$(function(){
-		var slider = new SliderUnlock("#slider",{
-				successLabelTip : "欢迎登录"	
-			},function(){
-				// alert("验证成功,即将跳转至首页");
-            	// window.location.href="index.html"
-        	});
-        slider.init();
-	})
-	</script>
+
 </body>
 
 </html>
