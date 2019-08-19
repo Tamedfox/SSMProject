@@ -6,7 +6,7 @@ public class LoginUser {
 	
 	private String password;
 	
-	private String verifyCode;
+	private String secCode;
 
 	public String getUsername() {
 		return username;
@@ -24,13 +24,11 @@ public class LoginUser {
 		this.password = password;
 	}
 
-	public String getVerifyCode() {
-		return verifyCode;
+	public String getSecCode() {
+		return secCode;
 	}
 
-	public void setVerifyCode(String verifyCode) {
-		this.verifyCode = verifyCode;
+	public void setSecCode(String secCode) {
+		this.secCode = secCode;
 	}
-	
-	
 }

@@ -53,12 +53,11 @@
 							<div class="input-prepend"><span class="add-on loginpwd"></span>
 								<input id="prependedInput" ng-model="entity.password"  name="password" type="password" placeholder="请输入密码" class="span2 input-xfat">
 							</div>
-							<div class="setting">
-								 <div id="slider">
-									<div id="slider_bg"></div>
-									<span id="label">>></span> <span id="labelTip">拖动滑块验证</span>
-									</div>
+							<div class="input-prepend">
+								<img style="height:30px;" id="codeImg" alt="点击更换" title="点击更换" src="" class="pull-left"/>&nbsp&nbsp&nbsp
+								<input id="prependedInput" ng-model="entity.secCode"  name="secCode" type="text" placeholder="请输入验证码" class="span2 input-xfat" style="width:100px">
 							</div>
+							<p>{{message}}</p>
 							<div class="logined">
 								<a class="sui-btn btn-block btn-xlarge btn-danger"  ng-click="login()" target="_blank">登&nbsp;&nbsp;录</a>
 							</div>
@@ -81,5 +80,19 @@
 
 
 </body>
+<script type="text/javascript">
+	$(document).ready(function() {
+		changeCode();
+		$("#codeImg").bind("click", changeCode);
+	});
 
+	function genTimestamp() {
+		var time = new Date();
+		return time.getTime();
+	}
+	
+	function changeCode() {
+		$("#codeImg").attr("src", "../code.do?t=" + genTimestamp());
+	}
+</script>
 </html>

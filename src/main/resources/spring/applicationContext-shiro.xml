@@ -43,8 +43,9 @@
                 /js/controller/loginController.js=anon
                 /js/plugins/**=anon
                 /js/pages/**=anon
-                <!-- 不拦截登录方法 -->
+                <!-- 不拦截登录方法及验证码生成 -->
                 /login.do=anon
+                /code.do=anon
                 /logout = logout
                 <!--所有的请求(除去配置的静态资源请求或请求地址为anon的请求)都要通过登录验证,如果未登录则跳到/login -->
                 /** = authc
