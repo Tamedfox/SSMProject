@@ -2,6 +2,7 @@ package com.cf.service.impl;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,6 +54,7 @@ public class BbsServiceImpl implements BbsService {
 	@Override
 	public void add(TbBbs bbs) {
 		String uuid = UuidUtil.get32UUID();
+		bbs.setUsername((String) SecurityUtils.getSubject().getPrincipal());
 		bbs.setUuid(uuid);
 		bbs.setPublishTime(new Date());
 		bbs.setUsername("chen");

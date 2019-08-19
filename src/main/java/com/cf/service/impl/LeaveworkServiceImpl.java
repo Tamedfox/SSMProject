@@ -2,6 +2,7 @@ package com.cf.service.impl;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -53,6 +54,7 @@ public class LeaveworkServiceImpl implements LeaveworkService {
 	 */
 	@Override
 	public void add(TbLeavework leavework) {
+		leavework.setUsername((String)SecurityUtils.getSubject().getPrincipal());
 		leavework.setCreateTime(new Date());
 		leaveworkMapper.insert(leavework);		
 	}
